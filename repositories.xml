@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+
+<repositories version="1.0">
+	<repo priority="50" quality="experimental" status="unofficial">
+		<name>mottainai</name>
+		<description>MottainaiCI overlay.</description>
+		<homepage>https://github.com/MottainaiCI/gentoo-overlay</homepage>
+		<owner>
+			<email>mudler@gentoo.org</email>
+		</owner>
+		<source type="git">https://github.com/MottainaiCI/gentoo-overlay.git</source>
+	</repo>
+</repositories>
