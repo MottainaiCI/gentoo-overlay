@@ -15,7 +15,7 @@ else
 	RESTRICT="mirror"
 	inherit golang-vcs git-r3
 	EGIT_REPO_URI="https://${EGO_PN}"
-	EGIT_COMMIT="93bbc827550854e0235d1b5b7e7ec2eec6034d94"
+	EGIT_COMMIT="d914fd6abe7e47ab8043eb8b483b39e2ff57d176"
 	EGIT_CHECKOUT_DIR="${S}"
 fi
 
@@ -60,6 +60,9 @@ src_install() {
 	dodir "${SRV_DIR}/web/namespace"
 	dodir "${SRV_DIR}/web/storage"
 	dodir "${SRV_DIR}/web/db"
+	dodir "/var/lock/mottainai"
+	fowners -R mottainai-server:mottainai "/var/lock/mottainai"
+	fperms -R 770 "/var/lock/mottainai"
 
 	fowners -R mottainai-server:mottainai "${SRV_DIR}"
 	fperms -R 774 "${SRV_DIR}"
