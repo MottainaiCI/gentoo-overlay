@@ -16,6 +16,7 @@ artefact_path: '/srv/mottainai/web/artefact'
 namespace_path: '/srv/mottainai/web/namespace'
 storage_path: '/srv/mottainai/web/storage'
 db_path: '/srv/mottainai/web/db'
+root_path: '/var/lib/mottainai'
 
 # RabbitMQ management
 amqp_uri: 'http://127.0.0.1:8080'

@@ -15,7 +15,7 @@ else
 	RESTRICT="mirror"
 	inherit golang-vcs git-r3
 	EGIT_REPO_URI="https://${EGO_PN}"
-	EGIT_COMMIT="5767d5efcec31f8c134837d81a18b1b3ccb2e548"
+	EGIT_COMMIT="f81f6a858e3f35165b743aaa56b56a7654349555"
 	EGIT_CHECKOUT_DIR="${S}"
 fi
 
@@ -52,6 +52,8 @@ src_install() {
 	cp -R public "${ED}${LIB_DIR}"
 	fowners -R mottainai-server:mottainai "${LIB_DIR}"
 	fperms -R 664 "${LIB_DIR}"
+	fperms -R 770 "${LIB_DIR}/templates"
+	fperms -R 644 "${LIB_DIR}/public"
 
 	dodir "${SRV_DIR}/web"
 	dodir "${SRV_DIR}/web/artefact"
