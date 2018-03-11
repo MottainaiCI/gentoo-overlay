@@ -27,11 +27,12 @@ LICENSE="GPL-3"
 SLOT="0"
 IUSE="systemd"
 DEPEND=""
-RDEPEND="dev-vcs/git"
+RDEPEND="app-emulation/docker
+dev-vcs/git"
 
 pkg_setup() {
 	enewgroup mottainai
-	enewuser mottainai-agent -1 -1 "/srv/mottainai" "mottainai"
+	enewuser mottainai-agent -1 -1 "/srv/mottainai" "mottainai,docker" # :(
 }
 
 src_install() {
