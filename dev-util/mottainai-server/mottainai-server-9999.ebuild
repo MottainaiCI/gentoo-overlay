@@ -53,7 +53,7 @@ src_install() {
 	fowners -R mottainai-server:mottainai "${LIB_DIR}"
 	fperms -R 664 "${LIB_DIR}"
 	fperms -R 770 "${LIB_DIR}/templates"
-	fperms -R 644 "${LIB_DIR}/public"
+	fperms -R 774 "${LIB_DIR}/public"
 
 	dodir "${SRV_DIR}/web"
 	dodir "${SRV_DIR}/web/artefact"
