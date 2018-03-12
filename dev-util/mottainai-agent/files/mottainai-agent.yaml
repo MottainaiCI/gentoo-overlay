@@ -4,10 +4,10 @@ agent_key: 'RandomStringsHere'
 
 # AMQP
 results_expire_in: 3600
-amqp_default_queue: "standard"
-amqp_exchange: "jobs"
-amqp_result_backend: 'amqp://guest:guest@127.0.0.1:5672/'
-amqp_broker: 'amqp://guest:guest@127.0.0.1:5672/'
+broker_default_queue: "standard"
+broker_exchange: "jobs"
+broker_result_backend: 'amqp://guest:guest@127.0.0.1:5672/'
+broker: 'amqp://guest:guest@127.0.0.1:5672/'
 
 # Misc
 build_path: '/srv/mottainai/build'
