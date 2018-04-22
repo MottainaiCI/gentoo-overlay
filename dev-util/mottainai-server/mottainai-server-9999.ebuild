@@ -48,8 +48,8 @@ src_install() {
 	dodir "${LIB_DIR}"
 	insinto "${LIB_DIR}"
 
-	cp -R templates "${ED}${LIB_DIR}"
-	cp -R public "${ED}${LIB_DIR}"
+	cp -R templates "${ED}${LIB_DIR}" || die
+	cp -R public "${ED}${LIB_DIR}" || die
 	fowners -R mottainai-server:mottainai "${LIB_DIR}"
 	fperms -R 770 "${LIB_DIR}"
 	fperms -R 770 "${LIB_DIR}/templates"
