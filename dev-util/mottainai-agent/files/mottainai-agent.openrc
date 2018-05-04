@@ -1,0 +1,58 @@
+#!/sbin/openrc-run
+
+### CADDY openRC gist. & Systemd unit used as templative guide..[Unit]Description=Mottainai Agent
+## anycase quit simular needs to caddy server on mot*-server side.. 
+## need to test the templates. 
+### OPENRC on Gentoo AWS is a must , try to convert to a full Sabayon box and offten Kerblewy.. 
+## anycase Mavrick Repo COMUNITY Project I FON'T want to Babysit All DAY. 
+## anycase Giving upstream  a toch  of control via the agent wala.. get packages ok... etc. 
+### Mavrick  Just a few Crossdev packages or rebuilds that mildly differ from Stock-Sabayon , and or Experamental Arm64 
+## moment though aws is on the el-cheep-o free tier so not much in ram. 
+
+description="Mottainai Agent"
+description_reload="Reload configuration"
+
+extra_started_commands="reload"
+
+: ${CADDY_CONF:=/etc/mottainai/mottainai-agent.yaml}
+: ${MOTTIAINAI_AGENT_PIDFILE:=/var/run//mottainai-agent}
+: ${MOTTIAINAI_AGENT_USER:=mottainai-agent}
+
+depend() {
+        need net
+        need localmount
+        use dns
+        after firewall
+}
+
+start() {
+        ebegin "Smottainai-agent"
+        start-stop-daemon --wait 1000 --background --start --exec \
+                /usr/bin/mottainai-agent \
+                --user ${MOTTIAINAI_AGENT_USER} \
+                --make-pidfile --pidfile ${MOTTIAINAI_AGENT_PIDFILE} \
+                -- -conf "${CADDY_CONF}" -pidfile "${MOTTIAINAI_AGENT_PIDFILE}" -agree -quiet && \
+        chown ${MOTTIAINAI_AGENT_USER}:root ${MOTTIAINAI_AGENT_PIDFILE}
+        eend $?
+}
+
+stop() {
+        ebegin "Stopping mottainai-agent"
+        start-stop-daemon --wait 5000 --stop --exec \
+                /usr/bin/mottainai-agent \
+                --user ${MOTTIAINAI_AGENT_USER} \
+                --pidfile ${MOTTIAINAI_AGENT_PIDFILE} \
+                -s SIGQUIT
+        eend $?
+}
+
+reload() {
+        ebegin "Reloading mottainai-agent configuration"
+        start-stop-daemon --exec \
+                /usr/bin/mottainai-agent \
+                --user ${MOTTIAINAI_AGENT_USER} \
+                --pidfile ${MOTTIAINAI_AGENT_PIDFILE} \
+                -s SIGUSR1 && \
+        chown ${MOTTIAINAI_AGENT_USER}:root ${MOTTIAINAI_AGENT_PIDFILE}
+        eend $?
+}
