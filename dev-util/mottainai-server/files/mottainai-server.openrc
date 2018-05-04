@@ -1,17 +1,5 @@
 #!/sbin/openrc-run
 
-### CADDY openRC gist. & Systemd unit used as templative guide..[Unit]Description=Mottainai Agent
-### OPENRC on Gentoo AWS is a must , try to convert to a full Sabayon box and offten Kerblewy.. for now can easily deligate my crappy box out. 
-## need to add system-d-love systemd:gentoo not convert fully till system is updated.. eslect-init.. etc. equo mask systemd. 
-## sysv-init in systemd to help smoth over ... transition , for now need openrc file till systemd is built and all. 
-## anycase Mavrick Repo COMUNITY Project I FON'T want to Babysit All DAY. 
-## anycase Giving upstream  a toch  of control via the agent wala.. get packages ok... etc. 
-### Mavrick  Just a few Crossdev packages or rebuilds that mildly differ from Stock-Sabayon IE QEMU with AARCH64/ARCH64_BE  , and or Experamental Arm64 system packages. ie RPI3 & ROCK64 
-## moment though aws is on the el-cheep-o free tier so not much in ram, and 750-1 gig blows chuncks hence why i'd rather agent it and foregt it. 
-## and or just push or slave dockers.. /push
-
-Trim my coments out on pull... 
-
 description="Mottainai Agent"
 description_reload="Reload configuration"
 
