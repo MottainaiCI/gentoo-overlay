@@ -39,7 +39,7 @@ src_install() {
 	local LIB_DIR="/var/lib/mottainai/"
 	local SRV_DIR="/srv/mottainai"
 
-	use systemd && systemd_dounit "${FILESDIR}/mottainai-server.service"
+	use systemd && systemd_dounit "${S}/contrib/systemd/mottainai-server.service"
 
 	dodir /etc/mottainai
 	insinto /etc/mottainai
