@@ -8,7 +8,7 @@ set -v
 #CLI_SHA=$(curl https://api.github.com/repos/MottainaiCI/mottainai-cli/commits/master |  jq -r '.  | .sha')
 DATE=$(date +'%Y%m%d')
 
-for repo in "mottainai-server" "mottainai-cli" "mottainai-agent"
+for repo in "mottainai-server" "mottainai-cli" "mottainai-agent" "replicant"
 do
 
 	SHA=$(curl "https://api.github.com/repos/MottainaiCI/$repo/commits/master" |  jq -r '.  | .sha')
