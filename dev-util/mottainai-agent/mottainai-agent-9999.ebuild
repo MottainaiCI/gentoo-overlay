@@ -39,11 +39,11 @@ src_install() {
 	local LIB_DIR="/var/lib/mottainai/"
 	local SRV_DIR="/srv/mottainai"
 
-	use systemd && systemd_dounit "${FILESDIR}/mottainai-agent.service"
+	use systemd && systemd_dounit "${S}/contrib/systemd/mottainai-agent.service"
 
 	dodir /etc/mottainai
 	insinto /etc/mottainai
-	doins "${FILESDIR}/mottainai-agent.yaml"
+	newins "${S}/contrib/config/mottainai-agent.yaml.example" "mottainai-agent.yaml"
 
 	dodir "${SRV_DIR}/build"
 
