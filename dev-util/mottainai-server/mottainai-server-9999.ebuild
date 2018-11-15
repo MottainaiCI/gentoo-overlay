@@ -43,7 +43,7 @@ src_install() {
 
 	dodir /etc/mottainai
 	insinto /etc/mottainai
-	doins "${FILESDIR}/mottainai-server.yaml"
+	newins "${S}/contrib/config/mottainai-server.yaml.example" "mottainai-server.yaml"
 
 	dodir "${LIB_DIR}"
 	insinto "${LIB_DIR}"
