@@ -25,9 +25,15 @@ HOMEPAGE="https://mottainaici.github.com/"
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE=""
-DEPEND=""
+IUSE="lxd"
+DEPEND="lxd? ( app-emulation/lxd )"
 RDEPEND=""
+
+src_compile() {
+	use lxd && EGO_BUILD_FLAGS="-tags lxd"
+
+	golang-build_src_compile
+}
 
 src_install() {
 	dobin mottainai-cli
