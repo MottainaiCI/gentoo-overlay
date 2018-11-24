@@ -25,14 +25,20 @@ HOMEPAGE="https://mottainaici.github.com/"
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="systemd"
+IUSE="systemd lxd"
 
-DEPEND=""
+DEPEND="lxd? ( app-emulation/lxd )"
 RDEPEND="dev-vcs/git"
 
 pkg_setup() {
 	enewgroup mottainai
 	enewuser mottainai-server -1 -1 "/var/lib/mottainai/" "mottainai"
+}
+
+src_compile() {
+	use lxd && EGO_BUILD_FLAGS="-tags lxd"
+
+	golang-build_src_compile
 }
 
 src_install() {
