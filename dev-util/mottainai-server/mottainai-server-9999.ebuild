@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -66,9 +66,7 @@ src_install() {
 	dodir "${SRV_DIR}/web/namespace"
 	dodir "${SRV_DIR}/web/storage"
 	dodir "${SRV_DIR}/web/db"
-	dodir "/var/lock/mottainai"
-	fowners -R mottainai-server:mottainai "/var/lock/mottainai"
-	fperms -R 770 "/var/lock/mottainai"
+	dodir "${SRV_DIR}/lock"
 
 	fowners -R mottainai-server:mottainai "${SRV_DIR}"
 	fperms -R 774 "${SRV_DIR}"
