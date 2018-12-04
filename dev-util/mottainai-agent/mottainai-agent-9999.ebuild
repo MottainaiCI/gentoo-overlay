@@ -61,5 +61,14 @@ src_install() {
 	fowners -R mottainai-agent:mottainai "${SRV_DIR}/build_temp"
 	fperms -R 774 "${SRV_DIR}/build_temp"
 
+	if use lxd; then
+		dodir "${SRV_DIR}/build/lxc"
+		insinto "${SRV_DIR}/build/lxc"
+		doins "${S}/contrib/config/lxc/config.yml"
+
+		fowners -R mottainai-agent:mottainai "${SRV_DIR}/build/lxc"
+		fperms -R 774 "${SRV_DIR}/build/lxc"
+	fi
+
 	dobin mottainai-agent
 }
