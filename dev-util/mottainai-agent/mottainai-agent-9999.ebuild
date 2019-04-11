@@ -28,7 +28,8 @@ SLOT="0"
 IUSE="systemd lxd"
 DEPEND="lxd? ( app-emulation/lxd )"
 RDEPEND="app-emulation/docker
-dev-vcs/git"
+	sys-apps/ethtool
+	dev-vcs/git"
 
 pkg_setup() {
 	enewgroup mottainai
