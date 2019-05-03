@@ -15,7 +15,7 @@ else
 	RESTRICT="mirror"
 	inherit golang-vcs git-r3
 	EGIT_REPO_URI="https://${EGO_PN}"
-	EGIT_COMMIT="850475e847150791d8f171a6b111d4add413ee0d"
+	EGIT_COMMIT="1888064f275ac853caf26d17f5a51a6fd109a48c"
 	EGIT_CHECKOUT_DIR="${S}"
 fi
 
