@@ -17,6 +17,7 @@ else
 	EGIT_REPO_URI="https://${EGO_PN}"
 	EGIT_COMMIT="84b578507d91ff1a29687d1227c2b9802f45d9d6"
 	EGIT_CHECKOUT_DIR="${S}"
+	EGIT_BRANCH="develop"
 fi
 
 inherit golang-build systemd user
