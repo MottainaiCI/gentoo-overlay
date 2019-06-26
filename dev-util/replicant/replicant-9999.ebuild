@@ -17,6 +17,7 @@ else
 	EGIT_REPO_URI="https://${EGO_PN}"
 	EGIT_COMMIT="3051d9260b619d1027eb139977af90832088d405"
 	EGIT_CHECKOUT_DIR="${S}"
+	EGIT_BRANCH="develop"
 fi
 
 inherit golang-build
