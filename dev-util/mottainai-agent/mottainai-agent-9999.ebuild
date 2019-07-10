@@ -68,6 +68,7 @@ src_install() {
 		insinto "${SRV_DIR}/build/lxc"
 		doins "${S}/contrib/config/lxc/config.yml"
 		dobin "${S}/contrib/scripts/mottainai-lxd-cleanup-zombie-containers"
+		dobin "${S}/contrib/scripts/mottainai-lxd-cleanup-expired-cached-images"
 
 		fowners -R mottainai-agent:mottainai "${SRV_DIR}/build/lxc"
 		fperms -R 774 "${SRV_DIR}/build/lxc"
