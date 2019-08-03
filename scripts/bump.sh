@@ -4,6 +4,8 @@ set -e
 set -x
 set -v
 
+CVS=${CVS:-git}
+
 BRANCH="${BRANCH:-develop}"
 #SERVER_SHA=$(curl https://api.github.com/repos/MottainaiCI/mottainai-server/commits/master |  jq -r '.  | .sha')
 #AGENT_SHA=$(curl https://api.github.com/repos/MottainaiCI/mottainai-agent/commits/master |  jq -r '.  | .sha')
@@ -19,6 +21,6 @@ do
 	sed -i "s:${CURRENT_SHA}:${SHA}:g" "dev-util/${repo}/${repo}-0.0_pre${DATE}.ebuild"
 	pushd "dev-util/${repo}"
 		git add "${repo}-0.0_pre${DATE}.ebuild"
-		repoman commit -m "dev-util/$repo: Pin to $BRANCH-$DATE"
+		${CVS} commit -m "dev-util/$repo: Pin to $BRANCH-$DATE"
 	popd
 done
