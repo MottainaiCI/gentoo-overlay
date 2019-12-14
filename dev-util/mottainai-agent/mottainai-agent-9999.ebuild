@@ -47,7 +47,12 @@ src_install() {
 	local LIB_DIR="/var/lib/mottainai/"
 	local SRV_DIR="/srv/mottainai"
 
-	use systemd && systemd_dounit "${S}/contrib/systemd/mottainai-agent.service"
+	if use systemd ; then
+		systemd_dounit "${S}/contrib/systemd/mottainai-agent.service"
+		systemd_dounit "${S}/contrib/systemd/mottainai-agent@.service"
+		systemd_dounit "${S}/contrib/systemd/mottainai-agent-health.service"
+		systemd_dounit "${S}/contrib/systemd/mottainai-agent-health@.service"
+	fi
 
 	dodir /etc/mottainai
 	insinto /etc/mottainai
