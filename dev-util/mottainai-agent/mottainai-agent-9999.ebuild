@@ -52,6 +52,8 @@ src_install() {
 		systemd_dounit "${S}/contrib/systemd/mottainai-agent@.service"
 		systemd_dounit "${S}/contrib/systemd/mottainai-agent-health.service"
 		systemd_dounit "${S}/contrib/systemd/mottainai-agent-health@.service"
+		systemd_dounit "${S}/contrib/systemd/mottainai-agent-health.timer"
+		systemd_dounit "${S}/contrib/systemd/mottainai-agent-health@.timer"
 	fi
 
 	dodir /etc/mottainai
