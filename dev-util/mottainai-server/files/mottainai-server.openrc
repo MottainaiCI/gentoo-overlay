@@ -1,0 +1,49 @@
+#!/sbin/openrc-run
+
+description="Mottainai Agent"
+description_reload="Reload configuration"
+
+extra_started_commands="reload"
+
+: ${MOTTIAINAI_SERVER_CONF:=/etc/mottainai/mottainai-server.yaml}
+: ${MOTTIAINAI_SERVER_PIDFILE:=/var/run//mottainai-agent}
+: ${MOTTIAINAI_SERVER_USER:=mottainai-agent}
+
+depend() {
+        need net
+        need localmount
+        use dns
+        after firewall
+}
+
+start() {
+        ebegin "Smottainai-agent"
+        start-stop-daemon --wait 1000 --background --start --exec \
+                /usr/bin/mottainai-server\
+                --user ${MOTTIAINAI_SERVER_USER} \
+                --make-pidfile --pidfile ${MOTTIAINAI_SERVER_PIDFILE} \
+                -- -conf "${MOTTIAINAI_SERVER_CONF}" -pidfile "${MOTTIAINAI_SERVER_PIDFILE}" -agree -quiet && \
+        chown ${MOTTIAINAI_SERVER_USER}:root ${MOTTIAINAI_SERVER_PIDFILE}
+        eend $?
+}
+
+stop() {
+        ebegin "Stopping mottainai-agent"
+        start-stop-daemon --wait 5000 --stop --exec \
+                /usr/bin/mottainai-server\
+                --user ${MOTTIAINAI_SERVER_USER} \
+                --pidfile ${MOTTIAINAI_SERVER_PIDFILE} \
+                -s SIGQUIT
+        eend $?
+}
+
+reload() {
+        ebegin "Reloading mottainai-serverconfiguration"
+        start-stop-daemon --exec \
+                /usr/bin/mottainai-server\
+                --user ${MOTTIAINAI_SERVER_USER} \
+                --pidfile ${MOTTIAINAI_SERVER_PIDFILE} \
+                -s SIGUSR1 && \
+        chown ${MOTTIAINAI_SERVER_USER}:root ${MOTTIAINAI_SERVER_PIDFILE}
+        eend $?
+}
